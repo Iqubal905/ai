@@ -30,7 +30,7 @@ technologies.forEach(technology => {
      <h1>${technology.name}</h1>
     <span> <i class="fa-solid fa-calendar-days"></i> ${technology.published_in}</span>
      </div>
-     <label onclick="dataLoadSingleTechnology('${technology.id}')" for="my-modal-3"><i  class="fa-solid fa-arrow-right mt-8"></i></label>
+     <label onclick="dataLoadSingleTechnology()" for="my-modal-3"><i  class="fa-solid fa-arrow-right mt-8"></i></label>
      
     </div>
 
@@ -57,9 +57,8 @@ const showAlltechonology = () => {
 
 // get and show single info of technology in modal
 
-const dataLoadSingleTechnology = (id) =>{
-    const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`
-    fetch(url)
+const dataLoadSingleTechnology = () =>{
+    fetch('https://openapi.programming-hero.com/api/ai/tool/01')
     .then(res => res.json())
     .then(data => displaySingleTechnologyModal(data))
 }
@@ -68,7 +67,6 @@ const displaySingleTechnologyModal = (tech) => {
   const modalContainer = document.getElementById('modal-info')
   const div = document.createElement("div");
   div.classList.add("modal");
-  div.classList.add("fade");
   div.innerHTML = `
   <div class="relative">
     <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
@@ -98,20 +96,17 @@ const displaySingleTechnologyModal = (tech) => {
         <div>
           <h2 class="text-black font-bold">Features</h2>
           <ul class="list-disc pl-6">
-              ${Object.values(tech.data.features).map(a => {
-                return `<li>${a.feature_name}</li>`
-              })}  
+            <li>${tech.data.features.feature_name}</li>
+            
           </ul>
         </div>
         <div>
           <h2 class="text-black font-bold">Integrations</h2>
-          
           <div class=" pl-6">
           <ul class="list-disc">
-           ${tech.data.integrations.map(a => {
-           return `<li>${a}</li>`
-           }).join("")}
-            
+            <li>nura</li>
+            <li>nura</li>
+            <li>nura</li>
           </ul></div>
         </div>
          
@@ -119,15 +114,15 @@ const displaySingleTechnologyModal = (tech) => {
     </div>
     
       <div class="card bg-white border relative">
-        <figure class="px-4 pt-4">
-          <img src="${tech.data.image_link[0]}" alt="Shoes" class="rounded-xl" />
+        <figure class="px-10 pt-10">
+          <img src="${tech.data.image_link}" alt="Shoes" class="rounded-xl" />
         </figure>
         <div class="card-body items-center text-center">
-          <h2 class="card-title font-bold text-black">${tech.data.input_output_examples[0].input}</h2>
-          <p class="text-inherit">${tech.data.input_output_examples[0].output}</p>
+          <h2 class="card-title font-bold text-black">Shoes!</h2>
+          <p class="text-inherit">If a dog chews shoes whose shoes does he choose?</p>
          
         </div>
-       <h2 class="bg-red-400 w-32 p-1 rounded-md pl-2 text-white font-bold absolute top-0 mt-4 mr-4 right-0">20% accurancy</h2>
+       <h2 class="bg-red-400 w-32 p-1 rounded-md pl-2 text-white font-bold absolute top-0 right-0">20% accurancy</h2>
  
       </div>
    
@@ -136,7 +131,6 @@ const displaySingleTechnologyModal = (tech) => {
  </div>
   `
   modalContainer.appendChild(div)
-  
 }
 
 
