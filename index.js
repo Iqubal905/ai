@@ -76,24 +76,24 @@ const displaySingleTechnologyModal = (tech) => {
   div.innerHTML = `
  
   <div class="col-md-6 bgColor p-5">
-  <h4>${tech.description}</h4>
+  <h4>${tech.description ? tech.description : '' }</h4>
   <div class="row">
     <div class="col-md-4 m-0 p-1 ">
     <div class="bg-light p-2 text-center text-success">
-    <h6 class=" m-0 p-0">${tech.pricing[0].price}</h6>
-    <h6 class=" ">${tech.pricing[0].plan}</h6>
+    <h6 class=" m-0 p-0">${tech.pricing[0].price ? tech.pricing[0].price : ''}</h6>
+    <h6 class=" ">${tech.pricing[0].plan ? tech.pricing[0].plan : ''}</h6>
     </div>
     </div>
     <div class="col-md-4 p-1 ">
     <div class="bg-light p-2 text-warning text-center">
-    <h6 class=" m-0 p-0">${tech.pricing[1].price}</h6>
-    <h6 class=" ">${tech.pricing[1].plan}</h6>
+    <h6 class=" m-0 p-0">${tech.pricing[1].price ? tech.pricing[1].price :''}</h6>
+    <h6 class=" ">${tech.pricing[1].plan ? tech.pricing[1].plan :''}</h6>
     </div>
     </div>
     <div class="col-md-4 p-1  ">
     <div class="bg-light p-2 text-danger text-center ">
-    <h6 class=" m-0 p-0">${tech.pricing[2].price}</h6>
-    <h6 class=" ">${tech.pricing[2].plan}</h6>
+    <h6 class=" m-0 p-0">${tech.pricing[2].price ? tech.pricing[2].price : ''}</h6>
+    <h6 class=" ">${tech.pricing[2].plan ? tech.pricing[2].plan :''}</h6>
     </div>
     </div>
   </div>
