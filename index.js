@@ -19,9 +19,21 @@ const dataDisplayed = (technologies) =>{
             <img src="${technology.image}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title"></h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <button onclick="dataLoadSingleTechnology('${technology.id}')" href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#phoneDetailModal">Show Details</button>
-                
+                <h4>Features</h4>
+                <ul class="a">
+                ${technology.features.map(a => {
+                  return `<li>${a}</li>`
+                  }).join("")}
+                  </ul>
+                  <hr>
+                  <div class="d-flex justify-content-between">
+                  <div>
+                  
+                  <h5>${technology.name}</h5>
+                  <span> <i class="fa-solid fa-calendar-days"></i> ${technology.published_in}</span>
+                  </div>
+                <span onclick="dataLoadSingleTechnology('${technology.id}')" href="#" class="pt-4 mt-1" data-bs-toggle="modal" data-bs-target="#phoneDetailModal"><i  class="fa-solid fa-arrow-right mt-8"></i></span>
+                </div>
             </div>
         </div>
         `;
@@ -34,7 +46,8 @@ const dataDisplayed = (technologies) =>{
 // show all data
 
 const showAlltechonology = () => {
- 
+ const showAllButton = document.getElementById('showAllBtn')
+ showAllButton.classList.add('d-none')
   const url = 'https://openapi.programming-hero.com/api/ai/tools'
   fetch(url)
   .then(res => res.json())
@@ -43,15 +56,7 @@ const showAlltechonology = () => {
 }
 
 
-// const processSearch = () =>{
-//     toggleSpinner(true);
-//     const searchField = document.getElementById('search-field');
-//     const searchText = searchField.value;
-//     loadPhones(searchText);
-// }
 
-
-//get and show single info of technology in modal
 
 const dataLoadSingleTechnology = (id) =>{
     const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`
@@ -71,20 +76,20 @@ const displaySingleTechnologyModal = (tech) => {
   <div class="col-md-6 bgColor p-5">
   <h4>${tech.description}</h4>
   <div class="row">
-    <div class="col-md-4 ms-auto">
-    <div class="bg-light py-3 text-success">
+    <div class="col-md-4 m-0 p-1 ">
+    <div class="bg-light p-2 text-center text-success">
     <h6 class=" m-0 p-0">${tech.pricing[0].price}</h6>
     <h6 class=" ">${tech.pricing[0].plan}</h6>
     </div>
     </div>
-    <div class="col-md-4 ms-auto">
-    <div class="bg-light py-3 text-warning">
+    <div class="col-md-4 p-1 ">
+    <div class="bg-light p-2 text-warning text-center">
     <h6 class=" m-0 p-0">${tech.pricing[1].price}</h6>
     <h6 class=" ">${tech.pricing[1].plan}</h6>
     </div>
     </div>
-    <div class="col-md-4 ms-auto ">
-    <div class="bg-light py-3 text-danger ">
+    <div class="col-md-4 p-1  ">
+    <div class="bg-light p-2 text-danger text-center ">
     <h6 class=" m-0 p-0">${tech.pricing[2].price}</h6>
     <h6 class=" ">${tech.pricing[2].plan}</h6>
     </div>
@@ -116,7 +121,7 @@ const displaySingleTechnologyModal = (tech) => {
     </div>
   </div>
 </div>
-<div class="col-md-6 ">
+<div class="col-md-6 position-relative">
 <div class="card" style="width: 18rem;">
 <img src="${tech.image_link[0]}" class="card-img-top" alt="...">
 <div class="card-body">
@@ -124,6 +129,7 @@ const displaySingleTechnologyModal = (tech) => {
 <p class="text-inherit">${tech.input_output_examples[0].output}</p>
 </div>
 </div> 
+<h6 class=" position-absolute top-0 start-50 bg-danger text-light py-1 rounded">${tech.accuracy.score}%<span>accurancy</span></h6>
 </div>
   `
 
@@ -149,40 +155,5 @@ const toggleSpinner = isLoading => {
 
 
 
-
-// // not the best way to load show All
-// document.getElementById('btn-show-all').addEventListener('click', function(){
-//     processSearch();
-// })
-
-
-
-
-
-
-
-// const loadPhoneDetails = async id =>{
-//     const url =`https://openapi.programming-hero.com/api/phone/${id}`;
-//     const res = await fetch(url);
-//     const data = await res.json();
-//     displayPhoneDetails(data.data);
-// }
-
-
-
-
-// const displayPhoneDetails = phone =>{
-//     console.log(phone);
-//     const modalTitle = document.getElementById('phoneDetailModalLabel');
-//     modalTitle.innerText = phone.name;
-//     const phoneDetails = document.getElementById('phone-details');
-//     console.log(phone.mainFeatures.sensors[0]);
-//     phoneDetails.innerHTML = `
-//         <p>Release Date: ${phone.releaseDate ? phone.releaseDate : 'No Release Date Found'}</p>
-//         <p>Storage: ${phone.mainFeatures ? phone.mainFeatures.storage : 'No Storage Information '}</p>
-//         <p>Others: ${phone.others ? phone.others.Bluetooth : 'No Bluetooth Information'}</p>
-//         <p>Sensor: ${phone.mainFeatures.sensors ? phone.mainFeatures.sensors[0] : 'no sensor'}</p>
-//     `
-// }
 
 dataLoad();
