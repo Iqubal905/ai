@@ -39,6 +39,8 @@ const dataDisplayed = (technologies) =>{
         `;
         phonesContainer.appendChild(phoneDiv);
     });
+
+
     // stop spinner or loader
     toggleSpinner(false);
 }
@@ -148,12 +150,6 @@ const toggleSpinner = isLoading => {
         loaderSection.classList.add('d-none');
     }
 }
-
-
-
-
-
-
 
 
 dataLoad();
