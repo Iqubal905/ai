@@ -131,7 +131,7 @@ const displaySingleTechnologyModal = (tech) => {
 <p class="text-inherit">${tech.input_output_examples[0].output}</p>
 </div>
 </div> 
-<h6 class=" position-absolute top-0 start-50 bg-danger text-light py-1 rounded">${tech.accuracy.score}%<span>accurancy</span></h6>
+<h6 class=" position-absolute top-0 start-50 bg-danger text-light py-1 rounded">${tech.accuracy.score + '%'+ 'accurancy' ? tech.accuracy.score : ''}</h6>
 </div>
   `
 
